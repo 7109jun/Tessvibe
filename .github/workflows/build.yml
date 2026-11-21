@@ -44,6 +44,26 @@ jobs:
           name: ${{ matrix.asset }}
           path: dist/${{ matrix.asset }}
 
+  publish-bin:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: bin
+          merge-multiple: true
+      - name: Commit binaries to bin/
+        run: |
+          chmod +x bin/tess-ent-linux-x86_64 bin/tess-ent-macos-arm64
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bin
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Update bin/ executables [skip ci]"
+          git push
+
   release:
     if: startsWith(github.ref, 'refs/tags/v')
     needs: build
