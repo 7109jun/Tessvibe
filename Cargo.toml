@@ -1,0 +1,25 @@
+[package]
+name = "tess-ent"
+version = "0.1.0"
+edition = "2021"
+description = "Converts Tess source (a text language for Entry blocks) into Entry .ent projects"
+license = "MIT"
+
+[lib]
+name = "tess_ent"
+path = "src/lib.rs"
+
+[[bin]]
+name = "tess-ent"
+path = "src/main.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "bmp"] }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
