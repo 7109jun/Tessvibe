@@ -63,3 +63,15 @@ AI 작업 순서: `ref` 로 문법 읽기 → `.tess` 작성 → `check --json` 
 ## License
 
 MIT (see `LICENSE`). Third-party attribution: `THIRD_PARTY_NOTICES.md`.
+
+
+## Entrypom (검증용 시뮬레이터)
+
+외부 라이브러리 없는 Python 으로 `.ent`/`.tess` 를 헤드리스 실행해 오류와 변수·리스트를 JSON/CSV 로 돌려줍니다.
+
+```
+python -m entrypom run 게임.tess --answer 철수 --press space@1 --dump-on "var=점수" --vars 점수 --format csv
+python -m entrypom check 게임.ent
+```
+
+자세한 사용법: [docs/Entrypom.md](docs/Entrypom.md)
