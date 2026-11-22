@@ -74,4 +74,23 @@ python -m entrypom run 게임.tess --answer 철수 --press space@1 --dump-on "va
 python -m entrypom check 게임.ent
 ```
 
+소스(`entrypom/`)와 실행 파일(`bin/entrypom.pyz`, 단일 파일·Python 3.8+ 만 있으면 실행)이 둘 다 들어 있습니다.
+
+```
+python bin/entrypom.pyz run 게임.ent --seconds 10 --pretty      # 실행 (JSON 출력)
+python bin/entrypom.pyz run 게임.tess --dump-on "var=점수" --vars 점수 --format csv -o 결과.csv
+python bin/entrypom.pyz check 게임.ent                          # 지원하지 않는 블록 검사
+python bin/entrypom.pyz inspect 게임.ent                        # 구조 요약
+```
+
+| 옵션 | 뜻 |
+| --- | --- |
+| `--answer 텍스트` / `--press 키@초` / `--click x,y@초` / `--scenario 파일.json` | 입력 주기 (ask 대답, 키, 클릭) |
+| `--seconds N` / `--frames N` / `--fps N` / `--seed N` / `--now ISO` | 실행 길이·결정성 |
+| `--dump-on 트리거` | `var=이름` `list` `signal` `say` `ask` `every=초` `at=초` `frame=N` `end` `error` … (여러 번) |
+| `--vars a,b` / `--lists c` / `--no-locals` / `--no-tables` / `--objects` | 덤프 범위 |
+| `--format json\|csv` / `-o 파일` / `--final-only` / `--pretty` | 출력 형식 |
+
+오류는 항상 JSON(`{"ok": false, "error": {...}}`), 종료 코드는 0 정상 · 1 실행 오류 · 2 파일/컴파일/인자 오류입니다. Tess 코드에서 `send "dump"` 를 보내면 그 순간의 변수·리스트가 자동으로 덤프됩니다.
+
 자세한 사용법: [docs/Entrypom.md](docs/Entrypom.md)
