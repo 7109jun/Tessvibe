@@ -3,6 +3,7 @@ import json
 import os
 import shutil
 import subprocess
+import sys
 import tarfile
 import tempfile
 
@@ -30,7 +31,8 @@ def _find_tess_ent():
     if found:
         return found
     here = os.path.dirname(os.path.abspath(__file__))
-    bin_dir = os.path.join(os.path.dirname(here), "bin")
+    dirs = [os.path.join(os.path.dirname(here), "bin"), os.path.dirname(os.path.abspath(sys.argv[0] or ".")),
+            os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(sys.argv[0] or "."))), "bin")]
     import platform
     sysname = platform.system()
     machine = platform.machine().lower()
@@ -41,10 +43,11 @@ def _find_tess_ent():
         names = ["tess-ent-macos-arm64"]
     else:
         names = ["tess-ent-linux-x86_64"]
-    for n in names:
-        p = os.path.join(bin_dir, n)
-        if os.path.exists(p):
-            return p
+    for d in dirs:
+        for n in names:
+            p = os.path.join(d, n)
+            if os.path.exists(p):
+                return p
     return None
 
 
