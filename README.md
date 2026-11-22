@@ -93,4 +93,4 @@ python bin/entrypom.pyz inspect 게임.ent                        # 구조 요�
 
 오류는 항상 JSON(`{"ok": false, "error": {...}}`), 종료 코드는 0 정상 · 1 실행 오류 · 2 파일/컴파일/인자 오류입니다. Tess 코드에서 `send "dump"` 를 보내면 그 순간의 변수·리스트가 자동으로 덤프됩니다.
 
-자세한 사용법: [docs/Entrypom.md](docs/Entrypom.md)
+자세한 사용법: [docs/Entrypom.md](docs/Entrypom.md) · AI 도구(Claude Code/Codex)·사람용 가이드: [docs/Usage-Guide.md](docs/Usage-Guide.md)
