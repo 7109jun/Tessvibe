@@ -17,7 +17,7 @@ on 240 sample programs. Not ported: `run`, `decompile`. Thumbnails are PNG-equiv
 
 `bin/tess-ent-linux-x86_64` (Linux x86_64).
 
-`bin/` 의 Windows(`tess-ent-windows-x86_64.exe`)·Linux·macOS 실행 파일은 GitHub Actions(`.github/workflows/build.yml`)가 `main` 푸시마다 빌드해 자동으로 커밋합니다. `v*` 태그(예: `v0.1.0`)를 푸시하면 Releases 에 Windows/Linux/macOS 실행 파일이 올라갑니다. 직접 빌드하려면 `cargo build --release` 후 `target/release/tess-ent` 를 쓰세요.
+`bin/` 의 Windows(`tess-ent-windows-x86_64.exe`)·Linux·macOS 실행 파일은 GitHub Actions(`.github/workflows/build.yml`)가 `main` 푸시마다 빌드해 자동으로 커밋합니다. `v*` 태그(예: `v0.1.0`)를 푸시하면 Releases 에 Windows/Linux/macOS 실행 파일이 올라갑니다. 직접 빌드하려면 `cargo build --release` 후 `target/release/tess-ent`  쓰세요.
 
 ## CLI 사용법
 
@@ -58,7 +58,7 @@ chmod +x bin/tess-ent-linux-x86_64
 { "mcpServers": { "tess": { "command": "/절대경로/bin/tess-ent-linux-x86_64", "args": ["mcp"] } } }
 ```
 
-AI 작업 순서: `ref` 로 문법 읽기 → `.tess` 작성 → `check --json` 으로 에러 수정 → `build` → playentry.org 에서 `.ent` 불러오기.
+AI 작업 순서: `ref` 로 문법 읽기 → `.tess` 작성 → `check --json` 으로 에러 수정 → `build` → playentry.org 에서 `.ent` 불러옵니다
 
 ## License
 
